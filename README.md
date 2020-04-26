@@ -1,2 +1,2 @@
 # mech-eng-calculator
-Various calculators used in mechanical engineering
+A GUI calculator with mechanical engineering tools
