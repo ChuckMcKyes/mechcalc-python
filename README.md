@@ -1,2 +1,5 @@
-# mech-eng-calculator
-A GUI calculator with mechanical engineering tools
+# mechcalc
+
+These are some engineering tools.
+
+Run it using "python3 -m mechcalc".
