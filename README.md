@@ -20,8 +20,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <br>
-<br>
-*** Verify calculations produced by this software. ***
+*** Verify calculations produced by this software. ***<br>
 
 All calculations are approximate estimates. Actual specifications
 are available from equipment manufacturers.
