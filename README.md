@@ -35,16 +35,16 @@ In Debian, a desktop shortcut can be created by creating
 a file with a .desktop extension (e.g., "MechCalc.desktop").
 Make the contents this:
 
-[Desktop Entry]
-Version=1.1.2
-Type=Application
-Name=MechCalc
-Comment=
-Exec=python3 -m mechcalc
-Icon=
-Path=
-Terminal=false
-StartupNotify=false
+[Desktop Entry]<br>
+Version=1.1.2<br>
+Type=Application<br>
+Name=MechCalc<br>
+Comment=<br>
+Exec=python3 -m mechcalc<br>
+Icon=<br>
+Path=<br>
+Terminal=false<br>
+StartupNotify=false<br>
 
 In Windows, right-click anywhere and create a shortcut.
 Right click again and select Properties.
