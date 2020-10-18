@@ -55,6 +55,5 @@ In Windows, right-click on the desktop or in file explorer
 and create a shortcut. Right click again and select Properties.
 Enter "<your python install directory>\pythonw.exe -m mechcalc"
 in the "Target:" field, and <your python install directory>
-in the "Start in:" field.
-
-"pythonw.exe" starts the script without a command line console.
+in the "Start in:" field. ("pythonw.exe" starts the script without
+a command line console.)
