@@ -1,11 +1,11 @@
 # mechcalc
 
-Mechanical Engineering Calculators, Chuck McKyes
-This is a gui app.
-v1.2.3 October 2020
-
-Copyright (C) 2020 Chuck McKyes
-
+Mechanical Engineering Calculators, Chuck McKyes<br>
+This is a gui app.<br>
+v1.2.3 October 2020<br>
+<br>
+Copyright (C) 2020 Chuck McKyes</br>
+<br>
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
