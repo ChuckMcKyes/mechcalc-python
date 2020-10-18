@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mechcalc",
-    version="1.2.2",
+    version="1.2.3",
     author="Chuck McKyes",
     author_email="cemckyes@gmail.com",
-    description="Mechanical Engineering Calculators",
+    description="Mechanical Engineering Calculators GUI",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ChuckMcKyes/mechcalc",
@@ -29,4 +29,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    entry_points = {
+        'gui_scripts': ['mechcalc=mechcalc.__main__:main']},
 )
