@@ -51,8 +51,8 @@ Path=<br>
 Terminal=false<br>
 StartupNotify=false<br>
 
-In Windows, right-click anywhere and create a shortcut.
-Right click again and select Properties.
+In Windows, right-click on the desktop or in file explorer
+and create a shortcut. Right click again and select Properties.
 Enter "<your python install directory>\pythonw.exe -m mechcalc"
 in the "Target:" field, and <your python install directory>
 in the "Start in:" field.
