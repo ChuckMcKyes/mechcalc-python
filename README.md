@@ -1,7 +1,8 @@
 # mechcalc
 
 Mechanical Engineering Calculators, Chuck McKyes
-v1.2.2 October 2020
+This is a gui app.
+v1.2.3 October 2020
 
 Copyright (C) 2020 Chuck McKyes
 
