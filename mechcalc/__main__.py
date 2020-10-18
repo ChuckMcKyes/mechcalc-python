@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 """
-	mechcalc, mechanical engineering tools.
-    Copyright (C) 2020, Chuck McKyes
+    Mechanical Engineering Calculators, Chuck McKyes
+    v1.2.2 October 2020
+
+    Copyright (C) 2020 Chuck McKyes
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,17 +19,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-    
+
 import wx
-from mechcalc import MyFrame
+from mechcalc import MainFrame
 
 
 class MyApp(wx.App):
     def OnInit(self):
-        self.my_frame = MyFrame(None, wx.ID_ANY)
+        self.my_frame = MainFrame(None, wx.ID_ANY, pos=(500, 200))
         self.SetTopWindow(self.my_frame)
         self.my_frame.Show()
         return True
+
+
 # end of class MyApp
 
 
