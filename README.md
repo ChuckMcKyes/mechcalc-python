@@ -1,10 +1,10 @@
 # mechcalc
 
 Mechanical Engineering Calculators, Chuck McKyes<br>
-This is a gui app.<br>
-v1.2.3 October 2020<br>
+This is a gui app based on wxPython.<br>
+v1.2.4 September 2021<br>
 <br>
-Copyright (C) 2020 Chuck McKyes</br>
+Copyright (C) 2021 Chuck McKyes</br>
 <br>
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,7 +31,10 @@ Vapour pressure of a mixture uses Raoult's law.
 wxPython is required. In Windows, Microsoft Visual C++
 redistributable is required. I find that everything works
 with Python 3.7.3 in Debian and Python 3.8.6 in Windows 10,
-but Python 3.9.0 does not work.
+but Python 3.9.0 does not appear to work on Windows 10.
+
+Debian requires python3-wxgtk to be installed via your package manager.
+The version as of this writing is python3-wxgtk4.0-4.0.4+dfsg-2.
 
 This python script can be run using "python3 -m mechcalc" on the
 command line or by creating a shortcut.
