@@ -34,7 +34,8 @@ with Python 3.7.3 in Debian and Python 3.8.6 in Windows 10,
 but Python 3.9.0 does not appear to work on Windows 10.
 
 Debian requires python3-wxgtk to be installed via your package manager.
-The version as of this writing is python3-wxgtk4.0-4.0.4+dfsg-2.
+For example, on a Raspberry Pi 4 as of this writing, the version is
+python3-wxgtk4.0-4.0.4+dfsg-2.
 
 This python script can be run using "python3 -m mechcalc" on the
 command line or by creating a shortcut.
