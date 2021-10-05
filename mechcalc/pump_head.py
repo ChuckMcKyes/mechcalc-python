@@ -2,9 +2,8 @@
 # -*- coding: UTF-8 -*-
 """
     Mechanical Engineering Calculators, Chuck McKyes
-    v1.2.2 October 2020
 
-    Copyright (C) 2020 Chuck McKyes
+    Copyright (C) 2021 Chuck McKyes
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +21,7 @@
 
 import wx
 import pkg_resources
+import json
 
 
 class PumpHead(wx.Panel):
@@ -36,12 +36,15 @@ class PumpHead(wx.Panel):
         self.text_ctrl_head_out = wx.TextCtrl(self, wx.ID_ANY, "", style=wx.TE_READONLY)
         self.text_ctrl_head_out_metric = wx.TextCtrl(self, wx.ID_ANY, "", style=wx.TE_READONLY)
 
+        self.data_path = pkg_resources.resource_filename('mechcalc', 'data/')
+
         # Bind event handlers
         self.text_ctrl_diameter_in.Bind(wx.EVT_TEXT, self.on_head_calculate)
         self.text_ctrl_rpm_in.Bind(wx.EVT_TEXT, self.on_head_calculate)
 
         self.__set_properties()
         self.__do_layout()
+        self.load_values()
 
         # Force calculation on __init__
         self.on_head_calculate(wx.EVT_TEXT)
@@ -94,9 +97,7 @@ class PumpHead(wx.Panel):
 
         pad_sizer = wx.BoxSizer(wx.HORIZONTAL)
         pad_sizer.Add(40, 0, 0)
-        data_path = pkg_resources.resource_filename('mechcalc', 'data/')
-        # data_path = "data/"
-        head_formula_image = wx.Image(data_path + 'pump_head.png', wx.BITMAP_TYPE_ANY)
+        head_formula_image = wx.Image(self.data_path + 'pump_head.png', wx.BITMAP_TYPE_ANY)
         head_formula = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(head_formula_image))
         pad_sizer.Add(head_formula)
         main_sizer.Add(pad_sizer)
@@ -177,4 +178,27 @@ class PumpHead(wx.Panel):
         else:
             self.text_ctrl_head_out.SetValue("")
             self.text_ctrl_head_out_metric.SetValue("")
+
+        self.save_values()
+
+    def save_values(self):
+        values = {"diameter": self.text_ctrl_diameter_in.GetValue(),
+                  "rpm": self.text_ctrl_rpm_in.GetValue()}
+
+        my_dump = json.dumps(values)
+        file = open(self.data_path + 'pump_head.json', 'w')
+        file.write(my_dump)
+        file.close()
+
+    def load_values(self):
+        try:
+            file = open(self.data_path + 'pump_head.json', 'r')
+            read_text = file.read()
+            file.close()
+            values = json.loads(read_text)
+            self.text_ctrl_diameter_in.SetValue(values["diameter"])
+            self.text_ctrl_rpm_in.SetValue(values["rpm"])
+        except FileNotFoundError:
+            return
+
 # end class PumpHead

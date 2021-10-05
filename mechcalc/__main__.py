@@ -2,9 +2,9 @@
 # -*- coding: UTF-8 -*-
 """
     Mechanical Engineering Calculators, Chuck McKyes
-    v1.2.2 October 2020
+    v1.3.2 October 2021
 
-    Copyright (C) 2020 Chuck McKyes
+    Copyright (C) 2021 Chuck McKyes
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

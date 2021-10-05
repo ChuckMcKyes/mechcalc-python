@@ -2,7 +2,7 @@
 
 Mechanical Engineering Calculators, Chuck McKyes<br>
 This is a gui app based on wxPython.<br>
-v1.2.4 September 2021<br>
+v1.3.2 October 2021<br>
 <br>
 Copyright (C) 2021 Chuck McKyes</br>
 <br>

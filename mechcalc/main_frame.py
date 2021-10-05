@@ -2,9 +2,8 @@
 # -*- coding: UTF-8 -*-
 """
     Mechanical Engineering Calculators, Chuck McKyes
-    v1.2.2 October 2020
 
-    Copyright (C) 2020 Chuck McKyes
+    Copyright (C) 2021 Chuck McKyes
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +21,7 @@
 
 import wx
 import pkg_resources
+import platform
 
 from mechcalc import Torque
 from mechcalc import Power
@@ -61,14 +61,22 @@ class MainFrame(wx.Frame):
         _icon = wx.NullIcon
         _icon.CopyFromBitmap(wx.Bitmap(data_path + "my_icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
-        self.notebook_1_pane_1.SetBackgroundColour(wx.Colour(40, 40, 40))
         self.notebook_1_pane_1.SetForegroundColour(wx.Colour(255, 255, 255))
-        self.notebook_1_pane_2.SetBackgroundColour(wx.Colour(40, 40, 40))
         self.notebook_1_pane_2.SetForegroundColour(wx.Colour(255, 255, 255))
-        self.notebook_1_pane_3.SetBackgroundColour(wx.Colour(40, 40, 40))
         self.notebook_1_pane_3.SetForegroundColour(wx.Colour(255, 255, 255))
-        self.notebook_1_pane_4.SetBackgroundColour(wx.Colour(40, 40, 40))
         self.notebook_1_pane_4.SetForegroundColour(wx.Colour(255, 255, 255))
+
+        # Set a darker background for Linux
+        if platform.system() == "Linux":
+            self.notebook_1_pane_1.SetBackgroundColour(wx.Colour(40, 40, 40))
+            self.notebook_1_pane_2.SetBackgroundColour(wx.Colour(40, 40, 40))
+            self.notebook_1_pane_3.SetBackgroundColour(wx.Colour(40, 40, 40))
+            self.notebook_1_pane_4.SetBackgroundColour(wx.Colour(40, 40, 40))
+        else:
+            self.notebook_1_pane_1.SetBackgroundColour(wx.Colour(100, 100, 100))
+            self.notebook_1_pane_2.SetBackgroundColour(wx.Colour(100, 100, 100))
+            self.notebook_1_pane_3.SetBackgroundColour(wx.Colour(100, 100, 100))
+            self.notebook_1_pane_4.SetBackgroundColour(wx.Colour(100, 100, 100))
 
     def __do_layout(self):
         # main window sizer

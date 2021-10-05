@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mechcalc",
-    version="1.2.3",
+    version="1.3.2",
     author="Chuck McKyes",
     author_email="cemckyes@gmail.com",
     description="Mechanical Engineering Calculators GUI",

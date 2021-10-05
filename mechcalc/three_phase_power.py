@@ -2,9 +2,8 @@
 # -*- coding: UTF-8 -*-
 """
     Mechanical Engineering Calculators, Chuck McKyes
-    v1.2.2 October 2020
 
-    Copyright (C) 2020 Chuck McKyes
+    Copyright (C) 2021 Chuck McKyes
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +21,7 @@
 
 import wx
 import pkg_resources
+import json
 
 
 class ThreePhasePower(wx.Panel):
@@ -38,6 +38,8 @@ class ThreePhasePower(wx.Panel):
         self.text_ctrl_power_out = wx.TextCtrl(self, wx.ID_ANY, "", style=wx.TE_READONLY)
         self.text_ctrl_power_out_hp = wx.TextCtrl(self, wx.ID_ANY, "", style=wx.TE_READONLY)
 
+        self.data_path = pkg_resources.resource_filename('mechcalc', 'data/')
+
         # Bind event handlers
         self.text_ctrl_current_in.Bind(wx.EVT_TEXT, self.on_power_calculate)
         self.text_ctrl_voltage_in.Bind(wx.EVT_TEXT, self.on_power_calculate)
@@ -46,6 +48,7 @@ class ThreePhasePower(wx.Panel):
 
         self.__set_properties()
         self.__do_layout()
+        self.load_values()
 
         # Force calculation on __init__
         self.on_power_calculate(wx.EVT_TEXT)
@@ -113,9 +116,7 @@ class ThreePhasePower(wx.Panel):
 
         pad_sizer = wx.BoxSizer(wx.HORIZONTAL)
         pad_sizer.Add(40, 0, 0)
-        data_path = pkg_resources.resource_filename('mechcalc', 'data/')
-        # data_path = "data/"
-        power_formula_image = wx.Image(data_path + 'motor_power.png', wx.BITMAP_TYPE_ANY)
+        power_formula_image = wx.Image(self.data_path + 'motor_power.png', wx.BITMAP_TYPE_ANY)
         power_formula = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(power_formula_image))
         pad_sizer.Add(power_formula, 1, 0, 0)
         main_sizer.Add(pad_sizer)
@@ -270,5 +271,31 @@ class ThreePhasePower(wx.Panel):
         else:
             self.text_ctrl_power_out.SetValue("")
             self.text_ctrl_power_out_hp.SetValue("")
+
+        self.save_values()
+
+    def save_values(self):
+        values = {"current": self.text_ctrl_current_in.GetValue(),
+                  "voltage": self.text_ctrl_voltage_in.GetValue(),
+                  "efficiency": self.text_ctrl_efficiency_in.GetValue(),
+                  "power_factor": self.text_ctrl_power_factor_in.GetValue()}
+
+        my_dump = json.dumps(values)
+        file = open(self.data_path + 'three_phase_power.json', 'w')
+        file.write(my_dump)
+        file.close()
+
+    def load_values(self):
+        try:
+            file = open(self.data_path + 'three_phase_power.json', 'r')
+            read_text = file.read()
+            file.close()
+            values = json.loads(read_text)
+            self.text_ctrl_current_in.SetValue(values["current"])
+            self.text_ctrl_voltage_in.SetValue(values["voltage"])
+            self.text_ctrl_efficiency_in.SetValue(values["efficiency"])
+            self.text_ctrl_power_factor_in.SetValue(values["power_factor"])
+        except FileNotFoundError:
+            return
 
 # end class ThreePhasePower

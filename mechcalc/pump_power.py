@@ -2,9 +2,8 @@
 # -*- coding: UTF-8 -*-
 """
     Mechanical Engineering Calculators, Chuck McKyes
-    v1.2.2 October 2020
 
-    Copyright (C) 2020 Chuck McKyes
+    Copyright (C) 2021 Chuck McKyes
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +21,7 @@
 
 import wx
 import pkg_resources
+import json
 
 
 class PumpPower(wx.Panel):
@@ -42,8 +42,11 @@ class PumpPower(wx.Panel):
         self.text_ctrl_head_in.Bind(wx.EVT_TEXT, self.on_power_calculate)
         self.text_ctrl_efficiency_in.Bind(wx.EVT_TEXT, self.on_power_calculate)
 
+        self.data_path = pkg_resources.resource_filename('mechcalc', 'data/')
+
         self.__set_properties()
         self.__do_layout()
+        self.load_values()
 
         # Force calculation on __init__
         self.on_power_calculate(wx.EVT_TEXT)
@@ -103,9 +106,7 @@ class PumpPower(wx.Panel):
 
         pad_sizer = wx.BoxSizer(wx.HORIZONTAL)
         pad_sizer.Add(40, 0, 0)
-        data_path = pkg_resources.resource_filename('mechcalc', 'data/')
-        # data_path = "data/"
-        ppower_formula_image = wx.Image(data_path + 'pump_power.png', wx.BITMAP_TYPE_ANY)
+        ppower_formula_image = wx.Image(self.data_path + 'pump_power.png', wx.BITMAP_TYPE_ANY)
         ppower_formula = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(ppower_formula_image))
         pad_sizer.Add(ppower_formula, 1, 0, 0)
         main_sizer.Add(pad_sizer)
@@ -223,4 +224,29 @@ class PumpPower(wx.Panel):
         else:
             self.text_ctrl_power_out.SetValue("")
             self.text_ctrl_power_out_metric.SetValue("")
+
+        self.save_values()
+
+    def save_values(self):
+        values = {"flow": self.text_ctrl_flow_in.GetValue(),
+                  "head": self.text_ctrl_head_in.GetValue(),
+                  "efficiency": self.text_ctrl_efficiency_in.GetValue()}
+
+        my_dump = json.dumps(values)
+        file = open(self.data_path + 'pump_power.json', 'w')
+        file.write(my_dump)
+        file.close()
+
+    def load_values(self):
+        try:
+            file = open(self.data_path + 'pump_power.json', 'r')
+            read_text = file.read()
+            file.close()
+            values = json.loads(read_text)
+            self.text_ctrl_flow_in.SetValue(values["flow"])
+            self.text_ctrl_head_in.SetValue(values["head"])
+            self.text_ctrl_efficiency_in.SetValue(values["efficiency"])
+        except FileNotFoundError:
+            return
+
 # end class PumpPower
