@@ -2,9 +2,9 @@
 
 Mechanical Engineering Calculators, Chuck McKyes<br>
 This is a gui app based on wxPython.<br>
-v1.3.2 October 2021<br>
+v1.3.3 February 2023<br>
 <br>
-Copyright (C) 2021 Chuck McKyes</br>
+Copyright (C) 2023 Chuck McKyes</br>
 <br>
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ a file with a .desktop extension (e.g., "MechCalc.desktop").
 Make the contents this:
 
 [Desktop Entry]<br>
-Version=1.1.2<br>
+Version=1.3.3<br>
 Type=Application<br>
 Name=MechCalc<br>
 Comment=<br>
